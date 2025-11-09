@@ -38,7 +38,7 @@ jobs:
           npm version "$DEV_VERSION" --no-git-tag-version
           #
           # Publish the package to GitHub Packages
-          npm publish --no-git-tag-version
+          npm publish --tag dev --no-git-tag-version
 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
