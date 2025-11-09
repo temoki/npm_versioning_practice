@@ -1,0 +1,14 @@
+{
+  "name": "npm_versioning_practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/temoki/npm_versioning_practice.git"
+  },
+  "author": "temoki",
+  "license": "ISC"
+}
