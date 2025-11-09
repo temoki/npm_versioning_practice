@@ -1,5 +1,5 @@
 {
-  "name": "npm_versioning_practice",
+  "name": "@temoki/npm_versioning_practice",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,5 +10,8 @@
     "url": "git+https://github.com/temoki/npm_versioning_practice.git"
   },
   "author": "temoki",
-  "license": "ISC"
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
