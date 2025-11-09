@@ -1,8 +1,10 @@
 name: npm versioning practice
 
-on: [
-    workflow_dispatch
-]
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   test:
@@ -34,6 +36,7 @@ jobs:
           #
           # Update package.json with the new version
           npm version "$DEV_VERSION" --no-git-tag-version
+          node -p "require('./package.json').version"
           #
           # Publish the package to GitHub Packages
           npm publish --no-git-tag-version
