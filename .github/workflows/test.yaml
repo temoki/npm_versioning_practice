@@ -33,10 +33,10 @@ jobs:
           echo "DEV_VERSION=$DEV_VERSION"
           #
           # Update package.json with the new version
-          npm version "$DEV_VERSION" --no-git-tag
+          npm version "$DEV_VERSION" --no-git-tag-version
           #
           # Publish the package to GitHub Packages
-          npm publish --no-git-tag-version --access public
+          npm publish --no-git-tag-version
 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
