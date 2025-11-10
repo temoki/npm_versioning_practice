@@ -31,10 +31,20 @@ else
 fi
 echo "👉 $NEXT_DEV_VERSION"
 
-echo "Write the current git commit hash to COMMIT_HASH file"
-COMMIT_HASH=$(git rev-parse HEAD)
-echo $COMMIT_HASH > COMMIT_HASH
-echo "👉 $COMMIT_HASH"
+echo "Create README file for the new dev prerelease version"
+README_TEMP="README.tmp"
+README_FILE="README.md"
+mv -f $README_FILE $README_TEMP
+echo "# $NEXT_DEV_VERSION" > $README_FILE
+echo "* Branch: $(git rev-parse --abbrev-ref HEAD)" >> $README_FILE
+echo "* Commit: $(git rev-parse HEAD)" >> $README_FILE
+echo "👉 Done"
 
+echo "Publish the new dev prerelease version to npm with the 'dev' tag"
 npm version ${NEXT_DEV_VERSION} --no-git-tag-version
 npm publish --tag ${DEV_PREID}
+echo "👉 Done"
+
+echo "Restore the original README file"
+mv -f $README_TEMP $README_FILE
+echo "👉 Done"
