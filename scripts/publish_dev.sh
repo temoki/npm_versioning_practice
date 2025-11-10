@@ -17,6 +17,7 @@ echo "👉 $NEXT_VERSION"
 
 echo "Check if the next dev version already exists in the npm registry"
 NEXT_DEV_VERSIONS=$(npm view "$PACKAGE@>=$NEXT_DEV_VERSION <$NEXT_VERSION" version --json 2>/dev/null)
+NEXT_DEV_VERSIONS="\"1.0.1-dev.0\""
 echo "👉 $NEXT_DEV_VERSIONS"
 
 if [ $? -eq 0 ]; then
@@ -31,5 +32,5 @@ else
 fi
 echo "👉 $NEXT_DEV_VERSION"
 
-# npm version ${NEXT_DEV_VERSION} --no-git-tag-version
-# npm publish --tag ${DEV_PREID}
+npm version ${NEXT_DEV_VERSION} --no-git-tag-version
+npm publish --tag ${DEV_PREID}
