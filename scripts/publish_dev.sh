@@ -31,5 +31,10 @@ else
 fi
 echo "👉 $NEXT_DEV_VERSION"
 
+echo "Write the current git commit hash to COMMIT_HASH file"
+COMMIT_HASH=$(git rev-parse HEAD)
+echo $COMMIT_HASH > COMMIT_HASH
+echo "👉 $COMMIT_HASH"
+
 npm version ${NEXT_DEV_VERSION} --no-git-tag-version
 npm publish --tag ${DEV_PREID}
