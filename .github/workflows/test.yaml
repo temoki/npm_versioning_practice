@@ -23,6 +23,6 @@ jobs:
         run: npm install
 
       - name: Publish to GitHub Packages
-        run: ./scripts/publish.sh
+        run: npm run publish_dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
