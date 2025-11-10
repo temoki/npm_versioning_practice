@@ -1,10 +1,9 @@
-name: npm versioning practice
+name: Publish DEV Version Automatically
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   test:

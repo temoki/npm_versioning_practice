@@ -7,7 +7,8 @@
   "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "publish_dev": "./scripts/publish_dev.sh"
+    "publish_dev": "./scripts/publish_dev.sh",
+    "publish_rc": "./scripts/publish_rc.sh"
   },
   "repository": {
     "type": "git",
