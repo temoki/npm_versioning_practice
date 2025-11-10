@@ -3,20 +3,16 @@
 PACKAGE="@temoki/npm_versioning_practice"
 PREID="rc"
 
-echo "Get the current version from package.json (ex. 1.2.0)"
+echo "Get the current version from package.json (ex. 2.0.0)"
 CURRENT_VERSION=$(node -p "require('./package.json').version" | xargs npx semver)
 echo "👉 $CURRENT_VERSION"
 
-echo "Determine the next release version (ex. 2.0.0)"
-NEXT_VERSION=$(npx semver -i major $CURRENT_VERSION --preid $PREID)
-echo "👉 $NEXT_VERSION"
-
 echo "Determine the next prerelease version (ex. 2.0.0-rc.0)"
-NEXT_PRE_VERSION=$(npx semver -i prerelease $NEXT_VERSION --preid $PREID)
+NEXT_PRE_VERSION="$(npx semver -c $CURRENT_VERSION)-$PREID.0"
 echo "👉 $NEXT_PRE_VERSION"
 
 echo "Check if the next prerelease version already exists in the npm registry"
-NEXT_PRE_VERSIONS=$(npm view "$PACKAGE@>=$NEXT_PRE_VERSION <$NEXT_VERSION" version --json 2>/dev/null)
+NEXT_PRE_VERSIONS=$(npm view "$PACKAGE@>=$NEXT_PRE_VERSION <$CURRENT_VERSION" version --json 2>/dev/null)
 if [ $? -eq 0 ]; then
   echo "👉 $NEXT_PRE_VERSIONS"
   echo "If the next prerelease version exists, extract the latest prerelease version (ex. 2.0.0-rc.2)"
