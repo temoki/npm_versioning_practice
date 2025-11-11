@@ -14,8 +14,8 @@ NEXT_PRE_VERSION="$(npx semver -c $CURRENT_VERSION)-$PREID.0"
 echo "👉 $NEXT_PRE_VERSION"
 
 echo "Check if the next prerelease version already exists in the npm registry"
-NEXT_PRE_VERSIONS=$(npm view "$PACKAGE@>=$NEXT_PRE_VERSION <$CURRENT_VERSION" version --json 2>/dev/null)
-if [ $? -eq 0 ]; then
+NEXT_PRE_VERSIONS=$(npm view "$PACKAGE@>=$NEXT_PRE_VERSION <$CURRENT_VERSION" version --json 2>/dev/null) || true
+if [ -n "$NEXT_PRE_VERSIONS" ]; then
   echo "👉 $NEXT_PRE_VERSIONS"
   echo "If the next prerelease version exists, extract the latest prerelease version (ex. 2.0.0-rc.2)"
   LATEST_NEXT_PRE_VERSION=$(echo "$NEXT_PRE_VERSIONS" | jq -r 'if type=="array" then .[-1] else . end' 2>/dev/null | xargs npx semver)
