@@ -39,8 +39,8 @@ echo "* Commit: $(git rev-parse HEAD)" >> $README_FILE
 echo "👉 Done"
 
 echo "Publish the new prerelease version to npm with the preid($PREID)"
-# npm version $NEXT_PRE_VERSION --no-git-tag-version
-# npm publish --tag $PREID
+npm version $NEXT_PRE_VERSION --no-git-tag-version
+npm publish --tag $PREID
 echo "👉 Done"
 
 echo "Restore the original README file"

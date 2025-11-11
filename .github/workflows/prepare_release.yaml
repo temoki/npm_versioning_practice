@@ -1,9 +1,7 @@
-name: Publish RC Version Automatically
+name: Prepare for Release
 
 on:
-  push:
-    branches:
-      - release/**
+  workflow_dispatch:
 
 jobs:
   test:
@@ -21,7 +19,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Publish to GitHub Packages
-        run: npm run publish_rc
+      - name: Prepare for Release
+        run: npm run prepare_release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
