@@ -20,7 +20,10 @@ jobs:
         run: npm install
 
       - name: Prepare for Release
-        run: npm run prepare_release
+        run: |
+          git config --global user.email "temoki@gmail.com"
+          git config --global user.name "temoki"
+          npm run prepare_release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
