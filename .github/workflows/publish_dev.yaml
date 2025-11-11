@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test:
+  publish_dev:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

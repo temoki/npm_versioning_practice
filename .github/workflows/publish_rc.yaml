@@ -6,7 +6,7 @@ on:
       - release/**
 
 jobs:
-  test:
+  publish_rc:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
