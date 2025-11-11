@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "publish_dev": "./scripts/publish_dev.sh",
+    "prepare_release": "./scripts/prepare_release.sh",
     "publish_rc": "./scripts/publish_rc.sh"
   },
   "repository": {

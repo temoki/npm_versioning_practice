@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 PACKAGE="@temoki/npm_versioning_practice"
 PREID="rc"
 
