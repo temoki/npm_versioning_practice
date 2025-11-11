@@ -4,6 +4,7 @@ set -e
 
 PACKAGE="@temoki/npm_versioning_practice"
 PREID="rc"
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 echo "Get the current version from package.json (ex. 2.0.0)"
 CURRENT_VERSION=$(node -p "require('./package.json').version" | xargs npx semver)
@@ -16,8 +17,9 @@ echo "👉 $NEXT_PRE_VERSION"
 echo "Check if the next prerelease version already exists in the npm registry"
 if NEXT_PRE_VERSIONS=$(npm view "$PACKAGE@>=$NEXT_PRE_VERSION <$CURRENT_VERSION" version --json 2>/dev/null); then
   echo "👉 $NEXT_PRE_VERSIONS"
+
   echo "If the next prerelease version exists, extract the latest prerelease version (ex. 2.0.0-rc.2)"
-  LATEST_NEXT_PRE_VERSION=$(echo "$NEXT_PRE_VERSIONS" | jq -r 'if type=="array" then .[-1] else . end' 2>/dev/null | xargs npx semver)
+  LATEST_NEXT_PRE_VERSION=$(node $SCRIPT_DIR/extract_latest_pre_version.js "$NEXT_PRE_VERSIONS" 2>/dev/null)
   echo "👉 $LATEST_NEXT_PRE_VERSION"
   
   echo "Determine the next prerelease version based on the latest existing version (ex. 2.0.0-rc.3)"
